@@ -38,7 +38,7 @@ pipeline {
                             npm test
                         '''
                     }
-                }>/
+                }*/
 
                 stage(' E2E Test') {
                     agent {
