@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        //stage('Parallel Tests') {
-         //   parallel {
-                stage('Build') {
+        stage('Parallel Tests') {
+            parallel {
+                /*stage('Build') {
                     agent {
                         docker{
                             image 'node:18-alpine'
@@ -21,7 +21,7 @@ pipeline {
                             ls -la
                         '''
                     }
-                }
+                }*/
 
                 stage('Test') {
                     agent {
