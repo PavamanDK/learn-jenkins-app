@@ -50,7 +50,7 @@ pipeline {
                     steps {
                         sh '''
                             echo "Executing E2E Test"
-                            npm install -g serve
+                            npm install serve
                             serve -s build 
                             npx playwrite test                           
                         '''
