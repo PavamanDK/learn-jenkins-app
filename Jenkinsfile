@@ -4,13 +4,13 @@ pipeline {
     stages {
         stage('Parallel Tests') {
             parallel {
-                agent {
+                stage('Build') {
+                    agent {
                         docker{
                             image 'node:18-alpine'
                             reuseNode true
                         }
                     }
-                stage('Build') {
                     steps {
                         sh '''
                             ls -ltrh
@@ -24,6 +24,12 @@ pipeline {
                 }
 
                 stage('Test') {
+                    agent {
+                        docker{
+                            image 'node:18-alpine'
+                            reuseNode true
+                        }
+                    }
                     steps {
                         sh '''
                             echo "Executing Test"
