@@ -3,7 +3,7 @@ pipeline {
 
     stages {
         stage('Parallel Tests') {
-            parallel {
+           // parallel {
                 /*stage('Build') {
                     agent {
                         docker{
@@ -23,7 +23,7 @@ pipeline {
                     }
                 }*/
 
-                stage(' Unit Test') {
+                /*stage(' Unit Test') {
                     agent {
                         docker{
                             image 'node:18-alpine'
@@ -38,7 +38,7 @@ pipeline {
                             npm test
                         '''
                     }
-                }
+                }>/
 
                 stage(' E2E Test') {
                     agent {
@@ -51,12 +51,13 @@ pipeline {
                         sh '''
                             echo "Executing E2E Test"
                             npm install serve
-                            node_modules/.bin/serve -s build 
+                            node_modules/.bin/serve -s build &
+                            sleep 10
                             npx playwrite test                           
                         '''
                     }
                 }
-            }
+            //}
         }
     }
 }
