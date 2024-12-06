@@ -51,7 +51,7 @@ pipeline {
                         sh '''
                             echo "Executing E2E Test"
                             npm install serve
-                            serve -s build 
+                            node_modules/.bin/serve -s build 
                             npx playwrite test                           
                         '''
                     }
