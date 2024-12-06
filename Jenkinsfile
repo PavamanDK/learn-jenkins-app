@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     stages {
-        stage('Parallel Tests') {
-            parallel {
+        //stage('Parallel Tests') {
+         //   parallel {
                 stage('Build') {
                     agent {
                         docker{
@@ -34,11 +34,12 @@ pipeline {
                         sh '''
                             echo "Executing Test"
                             test -f build/index.html
+                            npm --version
                             npm test
                         '''
                     }
                 }
             }
-        }
-    }
+        //}
+    //}
 }
