@@ -23,7 +23,7 @@ pipeline {
                     }
                 }*/
 
-                stage('Test') {
+                stage(' Unit Test') {
                     agent {
                         docker{
                             image 'node:18-alpine'
@@ -36,6 +36,23 @@ pipeline {
                             test -f build/index.html
                             npm --version
                             npm test
+                        '''
+                    }
+                }
+
+                stage(' E2E Test') {
+                    agent {
+                        docker{
+                            image 'mcr.microsoft.com/playwright:v1.49.0-noble'
+                            reuseNode true
+                        }
+                    }
+                    steps {
+                        sh '''
+                            echo "Executing E2E Test"
+                            npm install -g serve
+                            serve -s build 
+                            npx playwrite test                           
                         '''
                     }
                 }
